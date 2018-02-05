@@ -1,7 +1,6 @@
 package com.example.roman_zotov.marvelapp.data.network.api
 
-import android.arch.lifecycle.LiveData
-import com.example.roman_zotov.marvelapp.data.network.responces.Character
+import com.example.roman_zotov.marvelapp.data.network.responces.ApiResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -15,5 +14,5 @@ interface CharactersApi {
     fun getAllCharacters(@Query("ts") ts: String,
                          @Query("apikey") apiKey: String,
                          @Query("hash") hash: String,
-                         @Query("offset") offset: String) : Call<List<Character>>
+                         @Query("offset") offset: String) : Call<ApiResponse>
 }
