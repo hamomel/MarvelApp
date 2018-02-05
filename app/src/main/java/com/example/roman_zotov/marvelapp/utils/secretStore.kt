@@ -8,8 +8,7 @@ package com.example.roman_zotov.marvelapp.utils
 fun getPublicApiKey() = PUBLIC_KEY
 private fun getPrivateApiKey() = PRIVATE_KEY
 
-fun getApiMD5(): String {
-    val timeStamp = System.currentTimeMillis().toString()
+fun getApiMD5(timeStamp: String): String {
     val codeString = timeStamp + getPrivateApiKey() + getPublicApiKey()
     return MD5Generator.md5(codeString)
 }
