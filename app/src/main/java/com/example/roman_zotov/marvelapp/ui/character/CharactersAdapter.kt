@@ -9,14 +9,14 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.roman_zotov.marvelapp.R
-import com.example.roman_zotov.marvelapp.data.network.responces.ResultsItem
+import com.example.roman_zotov.marvelapp.data.network.responces.Character
 import com.squareup.picasso.Picasso
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
  */
 class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharactersViewHolder>() {
-    private var characters: List<ResultsItem>? = null
+    private var characters: List<Character>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CharactersViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_character, parent, false)
@@ -41,14 +41,14 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharactersViewH
             ButterKnife.bind(this, view)
         }
 
-        fun bind(character: ResultsItem) {
+        fun bind(character: Character) {
             name.text = character.name
             val photoUrl = character.thumbnail?.url
             Picasso.with(context).load(photoUrl).fit().centerCrop().into(photo)
         }
     }
 
-    fun setCharacters(characters: List<ResultsItem>?) {
+    fun setCharacters(characters: List<Character>?) {
         this.characters = characters
         notifyDataSetChanged()
     }

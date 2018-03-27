@@ -13,14 +13,14 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.roman_zotov.marvelapp.R
-import com.example.roman_zotov.marvelapp.data.network.responces.ResultsItem
+import com.example.roman_zotov.marvelapp.data.network.responces.Character
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
  */
 class CharactersFragment : Fragment() {
     private lateinit var viewModel: CharactersViewModel
-    private lateinit var characters: LiveData<List<ResultsItem>>
+    private lateinit var characters: LiveData<List<Character>>
     private lateinit var adapter: CharactersAdapter
 
     @BindView(R.id.characters_recycler)
