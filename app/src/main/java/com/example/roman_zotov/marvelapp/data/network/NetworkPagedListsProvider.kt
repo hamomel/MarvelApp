@@ -9,9 +9,11 @@ import com.example.roman_zotov.marvelapp.data.network.responces.Character
  */
 object NetworkPagedListsProvider {
     private const val DEFAULT_PAGE_SIZE = 30
+    private val charactersDataSourceFactory by lazy { CharactersDataSourceFactory(CharactersApi.create()) }
 
-    val characters by lazy { LivePagedListBuilder<Int, Character>(
-            CharactersDataSourceFactory(CharactersApi.create()),
-            DEFAULT_PAGE_SIZE)
+    val characters by lazy {
+        LivePagedListBuilder<Int, Character>(
+                charactersDataSourceFactory, DEFAULT_PAGE_SIZE)
+                .build()
     }
 }

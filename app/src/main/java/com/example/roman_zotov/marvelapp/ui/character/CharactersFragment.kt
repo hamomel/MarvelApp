@@ -1,6 +1,5 @@
 package com.example.roman_zotov.marvelapp.ui.character
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -13,14 +12,12 @@ import android.view.ViewGroup
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.roman_zotov.marvelapp.R
-import com.example.roman_zotov.marvelapp.data.network.responces.Character
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
  */
 class CharactersFragment : Fragment() {
     private lateinit var viewModel: CharactersViewModel
-    private lateinit var characters: LiveData<List<Character>>
     private lateinit var adapter: CharactersAdapter
 
     @BindView(R.id.characters_recycler)
@@ -35,11 +32,10 @@ class CharactersFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CharactersViewModel::class.java)
-        characters = viewModel.getCharacters()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_characters, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_characters, container, false)
         ButterKnife.bind(this, view)
         adapter = CharactersAdapter()
         recycler.adapter = adapter
@@ -49,7 +45,7 @@ class CharactersFragment : Fragment() {
     }
 
     private fun subscribeOnCharacters() {
-        characters.observe(this, Observer { adapter.setCharacters(it) })
+        viewModel.getCharacters().observe(this, Observer { adapter.submitList(it) })
     }
 
 }

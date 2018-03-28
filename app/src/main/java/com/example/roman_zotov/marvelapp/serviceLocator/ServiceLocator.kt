@@ -9,9 +9,7 @@ import com.example.roman_zotov.marvelapp.data.network.api.CharactersApi
 
 object ServiceLocator {
 
-    private val charactersApi: CharactersApi by lazy { createCharactersApi() }
 
-    val charactersRepository: CharactersRepository by lazy { CharactersRepository(charactersApi) }
+    val charactersRepository: CharactersRepository by lazy { CharactersRepository() }
 
-    private fun createCharactersApi(): CharactersApi = CharactersApi.create()
 }
