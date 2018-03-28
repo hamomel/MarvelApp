@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.roman_zotov.marvelapp.ui.custom_views.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:padding="8dp"
-              android:gravity="center">
+              android:padding="4dp">
 
-    <com.example.roman_zotov.marvelapp.ui.custom_views.SquareImageView
+    <ImageView
         android:id="@+id/character_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_launcher_background"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="top"
+        android:background="@drawable/gradient_upper"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/gradient_lower"
+        />
 
     <TextView
         android:id="@+id/character_name_tv"
+        style="@style/CharacterTextStyleTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
+        android:layout_margin="4dp"
+        android:gravity="left"
+        android:layout_gravity="top|left"
         tools:text="TextView"/>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/character_description_tv"
+        style="@style/CharacterTextStyleNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_gravity="bottom|left"
+        android:maxLines="2"
+        tools:text="Description of the character is not consistent"/>
+</com.example.roman_zotov.marvelapp.ui.custom_views.SquareFrameLayout>

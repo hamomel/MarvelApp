@@ -48,6 +48,8 @@ class CharactersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     lateinit var photo: ImageView
     @BindView(R.id.character_name_tv)
     lateinit var name: TextView
+    @BindView(R.id.character_description_tv)
+    lateinit var description: TextView
 
     init {
         ButterKnife.bind(this, view)
@@ -56,9 +58,20 @@ class CharactersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(character: Character?) {
         if (character != null) {
             name.text = character.name
+            description.text = character.description
             val photoUrl = character.thumbnail?.url
-            Picasso.with(context).load(photoUrl).fit().centerCrop().into(photo)
+            setImage(photoUrl)
+        } else {
+            setImage(null)
         }
+    }
 
+    private fun setImage(url: String?) {
+        Picasso.with(context)
+                .load(url)
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.marvel_placeholder)
+                .into(photo)
     }
 }
