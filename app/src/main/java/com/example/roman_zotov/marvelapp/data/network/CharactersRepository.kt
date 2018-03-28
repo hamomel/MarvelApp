@@ -6,4 +6,7 @@ package com.example.roman_zotov.marvelapp.data.network
 class CharactersRepository {
 
     fun getAllCharacters() = NetworkPagedListsProvider.characters
+
+    fun getCharactersList() = NetworkPagedListsProvider.getCharactersList()
+
 }

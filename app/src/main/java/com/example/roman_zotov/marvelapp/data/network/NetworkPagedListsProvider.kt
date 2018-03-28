@@ -2,8 +2,12 @@ package com.example.roman_zotov.marvelapp.data.network
 
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
+import android.os.Handler
+import android.os.Looper
 import com.example.roman_zotov.marvelapp.data.network.api.CharactersApi
 import com.example.roman_zotov.marvelapp.data.network.responces.Character
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 /**
  * Created by hamom on 27.03.18.
@@ -22,6 +26,23 @@ object NetworkPagedListsProvider {
     val characters by lazy {
         LivePagedListBuilder<Int, Character>(
                 charactersDataSourceFactory, listConfig)
+                .build()
+    }
+
+    fun getCharactersList() : PagedList<Character> {
+        val backGroundExecutor = Executors.newSingleThreadExecutor()
+        val mainThreadExecutor = object : Executor {
+            val handler = Handler(Looper.getMainLooper())
+            override fun execute(command: Runnable?) {
+                handler.post(command)
+            }
+        }
+
+        val characterDataSource = CharacterDataSource<Character>(CharactersApi.create())
+
+        return PagedList.Builder<Int, Character>(characterDataSource, listConfig)
+                .setBackgroundThreadExecutor(mainThreadExecutor)
+                .setMainThreadExecutor(mainThreadExecutor)
                 .build()
     }
 }

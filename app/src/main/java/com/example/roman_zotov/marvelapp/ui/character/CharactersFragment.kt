@@ -3,6 +3,7 @@ package com.example.roman_zotov.marvelapp.ui.character
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,9 +16,12 @@ import kotlinx.android.synthetic.main.fragment_characters.view.*
 /**
  * Created by Roman_Zotov on 02-Feb-18.
  */
+
 class CharactersFragment : Fragment() {
+
     private lateinit var viewModel: CharactersViewModel
     private lateinit var adapter: CharactersAdapter
+    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     lateinit var recycler: RecyclerView
 
@@ -36,9 +40,12 @@ class CharactersFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_characters, container, false)
         recycler = view.characters_recycler
         adapter = CharactersAdapter()
+        layoutManager = GridLayoutManager(context, 2)
         recycler.adapter = adapter
-        recycler.layoutManager = GridLayoutManager(context, 2)
-        viewModel.getCharacters().observe(this, Observer { adapter.submitList(it) })
+        recycler.layoutManager = layoutManager
+        viewModel.getCharacters().observe(this, Observer {
+            adapter.submitList(it)
+        })
         return view
     }
 }
