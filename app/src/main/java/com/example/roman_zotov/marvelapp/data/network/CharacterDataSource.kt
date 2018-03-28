@@ -11,44 +11,42 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CharacterDataSource<Value>(private val api: CharactersApi) : PositionalDataSource<Value>() {
+class CharacterDataSource(private val api: CharactersApi) : PositionalDataSource<Character>() {
     private val TAG = "$TAG_PREFIX ${CharacterDataSource::class.java.simpleName} :"
 
-    override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<Value>) {
+    override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<Character>) {
+
         api.getAllCharacters(params.startPosition, params.loadSize)
                 .enqueue(object : Callback<CharactersResponse> {
-                    override fun onFailure(call: Call<CharactersResponse>?, t: Throwable?) {
-
-                    }
+                    override fun onFailure(call: Call<CharactersResponse>?, t: Throwable?) {}
 
                     @Suppress("UNCHECKED_CAST")
-                    override fun onResponse(call: Call<CharactersResponse>?, response: Response<CharactersResponse>?) {
-                        val result = response?.body()?.data?.results as MutableList<List<Character>>
-                        callback.onResult(result as List<Value>)
-                    }
+                    override fun onResponse(call: Call<CharactersResponse>?,
+                                            response: Response<CharactersResponse>?) {
 
+                        val result = response?.body()?.data?.results as MutableList<List<Character>>
+                        callback.onResult(result as List<Character>)
+                    }
                 })
     }
 
-    override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Value>) {
+    override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Character>) {
 
         api.getAllCharacters(params.requestedStartPosition, params.requestedLoadSize)
                 .enqueue(object : Callback<CharactersResponse> {
-                    override fun onFailure(call: Call<CharactersResponse>?, t: Throwable?) {
-
-                    }
+                    override fun onFailure(call: Call<CharactersResponse>?, t: Throwable?) {}
 
                     @Suppress("UNCHECKED_CAST")
-                    override fun onResponse(call: Call<CharactersResponse>?, response: Response<CharactersResponse>?) {
+                    override fun onResponse(call: Call<CharactersResponse>?,
+                                            response: Response<CharactersResponse>?) {
 
                         val data = response?.body()?.data
                         val result = data?.results as MutableList<List<Character>>
                         val totalCount = data.total
 
-                        if (BuildConfig.DEBUG) Log.d(TAG, "onResponse: $result")
-
-                        callback.onResult(result as List<Value>, 0, totalCount)
+                        callback.onResult(result as List<Character>, 0, totalCount)
                     }
                 })
     }
 }
+

@@ -1,5 +1,6 @@
 package com.example.roman_zotov.marvelapp.data.network
 
+import android.arch.lifecycle.LiveData
 import android.arch.paging.LivePagedListBuilder
 import android.arch.paging.PagedList
 import android.os.Handler
@@ -23,7 +24,7 @@ object NetworkPagedListsProvider {
             .setPrefetchDistance(DEFAULT_PAGE_SIZE)
             .build()
 
-    val characters by lazy {
+    val characters  by lazy {
         LivePagedListBuilder<Int, Character>(
                 charactersDataSourceFactory, listConfig)
                 .build()
@@ -38,7 +39,7 @@ object NetworkPagedListsProvider {
             }
         }
 
-        val characterDataSource = CharacterDataSource<Character>(CharactersApi.create())
+        val characterDataSource = CharacterDataSource(CharactersApi.create())
 
         return PagedList.Builder<Int, Character>(characterDataSource, listConfig)
                 .setBackgroundThreadExecutor(mainThreadExecutor)

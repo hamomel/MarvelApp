@@ -10,6 +10,6 @@ import com.example.roman_zotov.marvelapp.data.network.responces.Character
  */
 class CharactersDataSourceFactory(private val api: CharactersApi) : DataSource.Factory<Int, Character>() {
 
-    override fun create(): DataSource<Int, Character> = CharacterDataSource<Character>(api)
+    override fun create(): DataSource<Int, Character> = CharacterDataSource(api)
 }
 

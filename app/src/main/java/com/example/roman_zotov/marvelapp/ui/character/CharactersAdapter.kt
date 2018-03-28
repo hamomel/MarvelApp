@@ -17,7 +17,8 @@ import kotlinx.android.synthetic.main.item_character.view.*
 class CharactersAdapter : PagedListAdapter<Character, CharactersViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
+        val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_character, parent, false)
         return CharactersViewHolder(view)
     }
 
