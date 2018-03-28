@@ -9,9 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.roman_zotov.marvelapp.R
+import kotlinx.android.synthetic.main.fragment_characters.view.*
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
@@ -20,7 +19,6 @@ class CharactersFragment : Fragment() {
     private lateinit var viewModel: CharactersViewModel
     private lateinit var adapter: CharactersAdapter
 
-    @BindView(R.id.characters_recycler)
     lateinit var recycler: RecyclerView
 
     companion object {
@@ -36,16 +34,11 @@ class CharactersFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_characters, container, false)
-        ButterKnife.bind(this, view)
+        recycler = view.characters_recycler
         adapter = CharactersAdapter()
         recycler.adapter = adapter
         recycler.layoutManager = GridLayoutManager(context, 2)
-        subscribeOnCharacters()
+        viewModel.getCharacters().observe(this, Observer { adapter.submitList(it) })
         return view
     }
-
-    private fun subscribeOnCharacters() {
-        viewModel.getCharacters().observe(this, Observer { adapter.submitList(it) })
-    }
-
 }

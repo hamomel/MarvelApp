@@ -8,8 +8,5 @@ import com.example.roman_zotov.marvelapp.data.network.api.CharactersApi
  */
 
 object ServiceLocator {
-
-
     val charactersRepository: CharactersRepository by lazy { CharactersRepository() }
-
 }

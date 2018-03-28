@@ -1,13 +1,10 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
-//    buildToolsVersion "27.1.0"
     defaultConfig {
         applicationId "com.example.roman_zotov.marvelapp"
         minSdkVersion 19
@@ -47,10 +44,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
-
-    //ButterKnife
-    implementation "com.jakewharton:butterknife:$butterknife_version"
-    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"

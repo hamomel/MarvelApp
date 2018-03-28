@@ -1,19 +1,15 @@
 package com.example.roman_zotov.marvelapp.ui.character
 
 import android.arch.paging.PagedListAdapter
-import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.roman_zotov.marvelapp.R
 import com.example.roman_zotov.marvelapp.data.network.responces.Character
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_character.view.*
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
@@ -38,22 +34,14 @@ class CharactersAdapter : PagedListAdapter<Character, CharactersViewHolder>(DIFF
                     oldItem?.equals(newItem) ?: false
         }
     }
-
 }
 
 class CharactersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val context = view.context.applicationContext
 
-    @BindView(R.id.character_iv)
-    lateinit var photo: ImageView
-    @BindView(R.id.character_name_tv)
-    lateinit var name: TextView
-    @BindView(R.id.character_description_tv)
-    lateinit var description: TextView
-
-    init {
-        ButterKnife.bind(this, view)
-    }
+    private val photo = view.character_iv
+    private val name = view.character_name_tv
+    private val description = view.character_description_tv
 
     fun bind(character: Character?) {
         if (character != null) {
