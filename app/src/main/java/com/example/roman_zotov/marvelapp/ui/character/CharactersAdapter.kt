@@ -1,5 +1,6 @@
 package com.example.roman_zotov.marvelapp.ui.character
 
+import android.arch.paging.PagedListAdapter
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
@@ -17,7 +18,7 @@ import com.squareup.picasso.Picasso
 /**
  * Created by Roman_Zotov on 02-Feb-18.
  */
-class CharactersAdapter : ListAdapter<Character, CharactersViewHolder>(DIFF_CALLBACK) {
+class CharactersAdapter : PagedListAdapter<Character, CharactersViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharactersViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_character, parent, false)
