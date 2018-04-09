@@ -4,13 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.example.roman_zotov.marvelapp.R
 import com.example.roman_zotov.marvelapp.data.network.responces.Character
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_character.view.*
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
@@ -32,19 +29,10 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharactersViewH
     class CharactersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val context = view.context
 
-        @BindView(R.id.character_iv)
-        lateinit var photo: ImageView
-        @BindView(R.id.character_name_tv)
-        lateinit var name: TextView
-
-        init {
-            ButterKnife.bind(this, view)
-        }
-
         fun bind(character: Character) {
-            name.text = character.name
+            itemView.character_name_tv.text = character.name
             val photoUrl = character.thumbnail?.url
-            Picasso.with(context).load(photoUrl).fit().centerCrop().into(photo)
+            Picasso.with(context).load(photoUrl).fit().centerCrop().into(itemView.character_iv)
         }
     }
 

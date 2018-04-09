@@ -47,10 +47,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
 
-    //ButterKnife
-    implementation "com.jakewharton:butterknife:$butterknife_version"
-    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
-
     //Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
 }
