@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.example.roman_zotov.marvelapp.R
+import org.koin.android.ext.android.releaseContext
 
 /**
  * Created by Roman_Zotov on 02-Feb-18.
@@ -19,4 +20,9 @@ abstract class OneFragmentActivity : AppCompatActivity() {
     }
 
     abstract fun getFragment(): Fragment
+
+    override fun onDestroy() {
+        if (isFinishing) releaseContext(this::class.java.name)
+        super.onDestroy()
+    }
 }
