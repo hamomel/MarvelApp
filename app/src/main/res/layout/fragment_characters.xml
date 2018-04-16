@@ -5,6 +5,8 @@
     android:id="@+id/characters_recycler"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:scrollbars="vertical"
+    android:scrollbarSize=""
     tools:listitem="@layout/item_character">
 
 </android.support.v7.widget.RecyclerView>
